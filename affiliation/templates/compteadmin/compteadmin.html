@@ -1,0 +1,497 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+<script src="https://kit.fontawesome.com/5dab609af8.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block main %}
+<main class="main">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" rel="nofollow">Accueil</a>
+                <span></span> Administrateur
+            </div>
+        </div>
+    </div>
+    <section class="pt-150 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 m-auto">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="dashboard-menu">
+                                <ul class="nav flex-column" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="fi-rs-dashboard mr-10"></i>Tableau de board</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="getahead-tab" data-bs-toggle="tab" href="#getahead" role="tab" aria-controls="getahead" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>Get Ahead</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="produits-tab" data-bs-toggle="tab" href="#produits" role="tab" aria-controls="produits" aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>Gestion des produits</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="commandes-tab" data-bs-toggle="tab" href="#commandes" role="tab" aria-controls="commandes" aria-selected="false"><i class="fi-rs-shopping-cart-check mr-10"></i>Gestion des commandes</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="utilisateurs-tab" data-bs-toggle="tab" href="#utilisateurs" role="tab" aria-controls="utilisateurs" aria-selected="false"><i class="fi-rs-users mr-10"></i>Gestion des utilisateurs</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="blogs-tab" data-bs-toggle="tab" href="#blogs" role="tab" aria-controls="blogs" aria-selected="true"><i class="fi-rs-marker mr-10"></i>Gestion des blogs</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Données du compte</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="page-login-register.html"><i class="fi-rs-sign-out mr-10"></i>Déconnexion</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="tab-content dashboard-content">
+                                <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="mb-0">Bonjour Utilisateur ! </h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <section class="banners mb-15">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-6">
+                                                            <div class="banner-img wow fadeIn animated">
+                                                                <img src="{% static 'html/evara/evara-frontend/assets/imgs/banner/banner-1.png' %}" alt="">
+                                                                <div class="banner-text">
+                                                                    <span>Total parrainage</span>
+                                                                    <h4>20 <br>personnes</h4>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 d-md-none d-lg-flex">
+                                                            <div class="banner-img wow fadeIn animated  mb-sm-0">
+                                                                <img src="{% static 'html/evara/evara-frontend/assets/imgs/banner/banner-3.png' %}" alt="">
+                                                                <div class="banner-text">
+                                                                    <span>Groupe </span>
+                                                                    <h4>93 personnes <br>dans votre groupe</h4>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6">
+                                                            <div class="banner-img wow fadeIn animated">
+                                                                <img src="{% static 'html/evara/evara-frontend/assets/imgs/banner/banner-2.png' %}" alt="">
+                                                                <div class="banner-text">
+                                                                    <span>Total commandes</span>
+                                                                    <h4>155 <br>Commandes</h4>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="getahead" role="tabpanel" aria-labelledby="getahead-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="mb-0">Programme d'entraide Get Ahead</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <h2>Liste des utilisateurs</h2> <br>
+                                                    <table id="table-liste-utilisateur" class="text-center table table-striped table-hover projects">
+                                                        <br>
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width: 15%;font-size:14px">Nom</th>
+                                                                <th style="width: 10%;font-size:15px;">
+                                                                    Points <small>> <span class="badge badge-secondary" style="color:black"> réel</span></small>
+                                                                </th>
+                                                                <th style="width: 12%;font-size:15px;">
+                                                                    Points <small>/ <span class="badge badge-secondary" style="color:black"> palier</span></small>
+                                                                </th>
+                                                                <th style="width: 10%;font-size:14px">Groupe</th>
+                                                                <th style="width: 10%;font-size:14px">Pays</th>
+                                                                <th style="width: 15%;font-size:14px">Téléphone</th>
+                                                                <th style="width: 12%;font-size:14px">Progression</th>
+                                                                <th style="font-size:14px">Sexe</th>
+                                                                <th style="width: 10%;font-size:14px">Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for utilisateur in utilisateurs %}
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="" class="" style="font-weight:700">
+                                                                        <i class="fa fa-user" aria-hidden="true"></i> {{utilisateur}}
+                                                                    </a>
+                                                                    <br>
+                                                                    {% if utilisateur.nom_du_parent is None %}
+                                                                        <small><i style="font-style:italic">Parrain : <span class="">Aucun</span></i></small>
+                                                                    {% elif utilisateur.nom_du_parent is not None %}
+                                                                        <small><i style="font-style:italic">Parrain : <span class="">{{ utilisateur.nom_du_parent }}</span></i></small>
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>
+                                                                    <b class="" style="font-size:14px;"><i>{{utilisateur.point|add:utilisateur.stock_point}}</i></b>
+                                                                </td>
+                                                                <td>
+                                                                    {% if utilisateur.poste.nom_du_poste == "Invité" %}
+                                                                    <b class="">{{ utilisateur.point_fictive_inv }}</b>
+                                                                    {% elif utilisateur.poste.nom_du_poste == "Colibri" %}
+                                                                    <b class="">{{ utilisateur.point_fictive_col }}</b>
+                                                                    {% elif utilisateur.poste.nom_du_poste == "Manageur" %}
+                                                                    <b class="">{{ utilisateur.point_fictive_manag }}</b>
+                                                                    {% elif utilisateur.poste is None %}
+                                                                    <small class="">Aucun</small>
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>
+                                                                    {% if utilisateur.groupe is not None%}
+                                                                    <b style="font-size:14px;"><i>{{utilisateur.groupe}}</i></b>
+                                                                    <small style="font-style:italic">Manageur : {{utilisateur.groupe.manageur_du_groupe}}</small>
+                                                                    {% elif utilisateur.groupe is None %}
+                                                                    <small style="font-style:italic">Aucun</small>
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>
+                                                                    {% if utilisateur.pays_de_residence is not None %}
+                                                                    <b style="font-size:14px;">{{utilisateur.pays_de_residence.pays}}</b>
+                                                                    <small>{{utilisateur.pays_de_residence.code_pays}}</small>
+                                                                    {% else %}
+                                                                    <small style="font-style:italic">Non précisé</small>
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>
+                                                                    {% if utilisateur.telephone is not None %}
+                                                                    <b style="font-size:14px;">{{utilisateur.telephone}}</b><br>
+                                                                    {% else %}
+                                                                    <b style="font-size:14px;font-style:italic">Non précisé</b><br>
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>
+                                                                    {% if utilisateur.palier is not None %}
+                                                                    <b style="font-size:14px;">{{utilisateur.poste}}</b><br>
+                                                                    <small class=""><i>{{utilisateur.palier}}</i></small>
+                                                                    {% elif utilisateur.palier is None %}
+                                                                    <small class=""><i>Aucune</i></small>
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td class="project-actions">
+                                                                    {% if utilisateur.palier is not None %}
+                                                                    <b style="font-size:14px;">{{utilisateur.sexe}}</b>
+                                                                    {% else %}
+                                                                    <b style="font-size:14px;font-style:italic">Non précisé</b>
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td class="">
+                                                                    <a href="" style="font-size:14px" class="show-form-update"><i class="fas fa-pen"></i></a>
+                                                                    <br>
+                                                                    <a style="font-size:14px" class="show-form-delete" href=""><i class="fas fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            {% empty %}
+                                                            <tr>
+                                                                <td colspan="9" class="text-center bg-primary" style="font-weight:bold;font-size:15px">Aucun utilisateur n'est disponible</td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                          </tbody>
+                                                      </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="produits" role="tabpanel" aria-labelledby="produits-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="mb-0">Vos produits</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <a href="javascript:void(0)" class="">
+                                                    <b>
+                                                        Voulez-vous ajoutez une nouvelle catégorie de produit ? Cliquez-ici
+                                                        <i class="fi-rs-arrow-right"></i>
+                                                    </b>
+                                                </a>
+                                                <br><br>
+                                                {% load crispy_forms_tags %}
+                                                <form method="POST" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        {{p_form}}
+                                                        <br><br><br>
+                                                        <div class="col-md-12">
+                                                            <button type="submit" class="btn btn-sm btn-fill-out" name="submit">
+                                                                Enrégistrer le produit
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <br><br> <hr> <br>
+                                                <h2>Liste de tous les produits</h2> <br>
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Catégorie</th>
+                                                            <th>Désignation</th>
+                                                            <th>Description</th>
+                                                            <th>Prix</th>
+                                                            <th>Quantité</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for product in all_product %}
+                                                        <tr>
+                                                            <td>#{{product.id}}</td>
+                                                            <td>{{product.categorie}}</td>
+                                                            <td>{{product.designation}}</td>
+                                                            <td>{{product.mini_description}}</td>
+                                                            <td>{{product.prix}} FCFA / KG</td>
+                                                            <td>{{product.quantite}}</td>
+                                                            <td><a href="#" class="btn-small d-block">Voir</a></td>
+                                                        </tr>
+                                                        {% empty %}
+                                                        <tr>
+                                                            <td colspan="7">Aucune donnée disponible</td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="commandes" role="tabpanel" aria-labelledby="commandes-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="mb-0">Vos commandes</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Order</th>
+                                                            <th>Date</th>
+                                                            <th>Status</th>
+                                                            <th>Total</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>#1357</td>
+                                                            <td>March 45, 2020</td>
+                                                            <td>Processing</td>
+                                                            <td>$125.00 for 2 item</td>
+                                                            <td><a href="#" class="btn-small d-block">View</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>#2468</td>
+                                                            <td>June 29, 2020</td>
+                                                            <td>Completed</td>
+                                                            <td>$364.00 for 5 item</td>
+                                                            <td><a href="#" class="btn-small d-block">View</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>#2366</td>
+                                                            <td>August 02, 2020</td>
+                                                            <td>Completed</td>
+                                                            <td>$280.00 for 3 item</td>
+                                                            <td><a href="#" class="btn-small d-block">View</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="utilisateurs" role="tabpanel" aria-labelledby="utilisateurs-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="mb-0">Gestion des utilisateurs</h5>
+                                        </div>
+                                        <div class="card-body ">
+                                            <div class="table-responsive">
+                                                <br>
+                                                {% load crispy_forms_tags %}
+                                                <form method="POST" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        {{a_form}}
+                                                        <br><br><br>
+                                                        <div class="col-md-12">
+                                                            <button type="submit" class="btn btn-sm btn-fill-out" name="submit">
+                                                                Enrégistrer l'utilisateur
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                <div class="row">
+                                                    <div class="col-lg-12"><br><br>
+                                                        <h2>Liste des admins</h2> <br>
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Id</th>
+                                                                    <th>Nom d'utilisateur</th>
+                                                                    <th>Nom</th>
+                                                                    <th>Groupe</th>
+                                                                    <th>Actions</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {% for admin in admins %}
+                                                                <tr>
+                                                                    <td>#{{admin.id}}</td>
+                                                                    <td>{{admin.nom_d_utilisateur}}</td>
+                                                                    <td>{{admin}}</td>
+                                                                    {% if admin.groupe is not None %}
+                                                                    <td>{{admin.groupe}}</td>
+                                                                    {% else %}
+                                                                    <td class="text-center">---</td>
+                                                                    {% endif %}
+                                                                    <td><a href="#" class="btn-small d-block">Voir</a></td>
+                                                                </tr>
+                                                                {% empty %}
+                                                                <tr>
+                                                                    <td colspan="5">Aucune donnée disponible</td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="blogs" role="tabpanel" aria-labelledby="blogs-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="mb-0">Gestion des blogs</h5>
+                                        </div>
+                                        <div class="card-body ">
+                                            <div class="table-responsive">
+                                                <br>
+                                                {% load crispy_forms_tags %}
+                                                <form method="POST" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        {{b_form}}
+                                                        <br><br><br>
+                                                        <div class="col-md-12">
+                                                            <button type="submit" class="btn btn-sm btn-fill-out" name="submit">
+                                                                Enrégistrer le blog
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                <div class="row">
+                                                    <div class="col-lg-12"><br><br>
+                                                        <h2>Liste des blogs</h2> <br>
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Id</th>
+                                                                    <th>Titre</th>
+                                                                    <th>Statut</th>
+                                                                    <th>Vue</th>
+                                                                    <th>Date publication</th>
+                                                                    <th>Actions</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {% for blog in blogs %}
+                                                                <tr>
+                                                                    <td>#{{blog.id}}</td>
+                                                                    <td>{{blog.titre|truncatewords:11}}</td>
+                                                                    {% if blog.publie is True %}
+                                                                    <td>Mise en ligne</td>
+                                                                    {% else %}
+                                                                    <td>Non en ligne</td>
+                                                                    {% endif %}
+                                                                    <td>{{blog.vue}}</td>
+                                                                    <td><i class="fas fa-clock"></i>&nbsp;{{blog.date|date:"d M Y"}}</td>
+                                                                    <td><a href="#" class="btn-small d-block">Voir</a></td>
+                                                                </tr>
+                                                                {% empty %}
+                                                                <tr>
+                                                                    <td colspan="6">Aucune donnée disponible</td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Données du compte</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Already have an account? <a href="page-login-register.html">Log in instead!</a></p>
+                                            <form method="post" name="enq">
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label>First Name <span class="required">*</span></label>
+                                                        <input required="" class="form-control square" name="name" type="text">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Last Name <span class="required">*</span></label>
+                                                        <input required="" class="form-control square" name="phone">
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label>Display Name <span class="required">*</span></label>
+                                                        <input required="" class="form-control square" name="dname" type="text">
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label>Email Address <span class="required">*</span></label>
+                                                        <input required="" class="form-control square" name="email" type="email">
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label>Current Password <span class="required">*</span></label>
+                                                        <input required="" class="form-control square" name="password" type="password">
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label>New Password <span class="required">*</span></label>
+                                                        <input required="" class="form-control square" name="npassword" type="password">
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label>Confirm Password <span class="required">*</span></label>
+                                                        <input required="" class="form-control square" name="cpassword" type="password">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <button type="submit" class="btn btn-fill-out submit" name="submit" value="Submit">Save</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
