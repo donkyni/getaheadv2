@@ -1,10 +1,30 @@
+from django.db import IntegrityError
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from affiliation.forms import ProduitForm, UserCreationForm, UserCreationAdminForm, BlogForm
-from affiliation.models import Produit, CategorieProduit, User, Groupe, Blog
+from affiliation.models import Produit, CategorieProduit, User, Groupe, Blog, Newsletter
+
+
+def validation_email(email):
+    try:
+        if email:
+            abonnement = Newsletter(email=email)
+            abonnement.save()
+            return True
+    except IntegrityError:
+        return False
 
 
 def accueil(request):
+    newsletter = Newsletter.objects.filter(archive=False)
+    if request.method == 'POST':
+        email = request.POST.get('newsletter', '')
+        if validation_email(email):
+            return HttpResponse("Inscription réussi ! Merci.")
+        else:
+            return HttpResponse("Erreur : Cette adresse e-mail est déjà enregistrée.")
+
     return render(request, 'base.html', locals())
 
 

@@ -1,6 +1,6 @@
 from django import forms
 
-from affiliation.models import Produit, User, Blog
+from affiliation.models import Produit, User, Blog, Newsletter
 
 
 class DateInput(forms.DateInput):

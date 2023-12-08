@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django import forms
 
 from affiliation.models import User, CategorieProduit, Produit, DroitsProfils, Profils, Droits, CodePays, Groupe, \
-    Palier, Niveau, Poste, Blog
+    Palier, Niveau, Poste, Blog, Newsletter
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
@@ -197,3 +197,14 @@ class BlogAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Blog, BlogAdmin)
+
+
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ('email', 'date', 'archive')
+    list_filter = ('email', 'date', 'archive')
+    date_hierarchy = 'date'
+    ordering = ('email', 'date', 'archive')
+    search_fields = ('email', 'date', 'archive')
+
+
+admin.site.register(Newsletter, NewsletterAdmin)

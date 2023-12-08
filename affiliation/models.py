@@ -255,3 +255,9 @@ class Blog(models.Model):
     vue = models.BigIntegerField(null=True, default=0)
     date = models.DateTimeField(auto_now_add=True)
     archive = models.BooleanField(default=False)
+
+
+class Newsletter(models.Model):
+    email = models.EmailField(null=True, unique=True)
+    date = models.DateField(auto_now_add=True)
+    archive = models.BooleanField(default=False)
