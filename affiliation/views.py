@@ -16,6 +16,16 @@ def validation_email(email):
         return False
 
 
+def offline(request):
+    if request.method == 'POST':
+        email = request.POST.get('email', '')
+        if validation_email(email):
+            return HttpResponse("Inscription réussi ! Merci.")
+        else:
+            return HttpResponse("Erreur : Cette adresse e-mail est déjà enregistrée.")
+    return render(request, "pages/offline.html", locals())
+
+
 def accueil(request):
     newsletter = Newsletter.objects.filter(archive=False)
     if request.method == 'POST':
