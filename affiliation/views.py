@@ -58,6 +58,7 @@ def detailproduit(request, id):
 
 
 def blog(request):
+    blogs = Blog.objects.filter(archive=False)
     return render(request, 'blog/blog.html', locals())
 
 

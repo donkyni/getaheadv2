@@ -247,7 +247,17 @@ class Produit(models.Model):
         return cls.objects.filter(date_creation__gte=limite_temps)
 
 
+class CategorieBlog(models.Model):
+    titre = models.CharField(max_length=300, null=True)
+    date = models.DateField(auto_now_add=True)
+    archive = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.titre
+
+
 class Blog(models.Model):
+    categorieblog = models.ForeignKey(CategorieBlog, on_delete=models.SET_NULL, null=True)
     image = models.ImageField(null=True, upload_to="Blog/")
     titre = models.CharField(max_length=300, null=True)
     description = models.TextField(null=True)

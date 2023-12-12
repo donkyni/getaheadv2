@@ -423,7 +423,7 @@
                                                                     {% endif %}
                                                                     <td>{{blog.vue}}</td>
                                                                     <td><i class="fas fa-clock"></i>&nbsp;{{blog.date|date:"d M Y"}}</td>
-                                                                    <td><a href="#" class="btn-small d-block">Voir</a></td>
+                                                                    <td><a href="{% url 'blog' %}" class="btn-small d-block">Voir</a></td>
                                                                 </tr>
                                                                 {% empty %}
                                                                 <tr>

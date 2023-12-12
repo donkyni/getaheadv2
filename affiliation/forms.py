@@ -90,7 +90,7 @@ class ProduitForm(forms.ModelForm):
 class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ('image', 'titre', 'description', 'publie',)
+        fields = ('categorieblog', 'image', 'titre', 'description', 'publie',)
         widgets = {
             'description': forms.Textarea(attrs={'cols': 40, 'rows': 10})
         }

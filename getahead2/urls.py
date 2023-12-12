@@ -21,10 +21,10 @@ from django.urls import path, include
 from affiliation import views
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('accueil', views.accueil, name='accueil'),
     path('', views.offline, name='offline'),
-    # path('affiliation/', include('affiliation.urls')),
+    path('affiliation/', include('affiliation.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

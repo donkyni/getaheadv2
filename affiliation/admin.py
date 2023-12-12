@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django import forms
 
 from affiliation.models import User, CategorieProduit, Produit, DroitsProfils, Profils, Droits, CodePays, Groupe, \
-    Palier, Niveau, Poste, Blog, Newsletter
+    Palier, Niveau, Poste, Blog, Newsletter, CategorieBlog
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
@@ -189,14 +189,25 @@ admin.site.register(Produit, ProduitAdmin)
 
 
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('titre', 'publie', 'vue', 'date', 'archive')
-    list_filter = ('titre', 'publie', 'vue', 'date', 'archive')
+    list_display = ('categorieblog', 'titre', 'publie', 'vue', 'date', 'archive')
+    list_filter = ('categorieblog', 'titre', 'publie', 'vue', 'date', 'archive')
     date_hierarchy = 'date'
-    ordering = ('titre', 'publie', 'vue', 'date', 'archive')
-    search_fields = ('titre', 'publie', 'vue', 'date', 'archive')
+    ordering = ('categorieblog', 'titre', 'publie', 'vue', 'date', 'archive')
+    search_fields = ('categorieblog', 'titre', 'publie', 'vue', 'date', 'archive')
 
 
 admin.site.register(Blog, BlogAdmin)
+
+
+class CategorieBlogAdmin(admin.ModelAdmin):
+    list_display = ('titre', 'date', 'archive')
+    list_filter = ('titre', 'date', 'archive')
+    date_hierarchy = 'date'
+    ordering = ('titre', 'date', 'archive')
+    search_fields = ('titre', 'date', 'archive')
+
+
+admin.site.register(CategorieBlog, CategorieBlogAdmin)
 
 
 class NewsletterAdmin(admin.ModelAdmin):
